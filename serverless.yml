@@ -13,6 +13,14 @@
 
 service: slstest
 
+plugins:
+  - serverless-offline
+  - serverless-webpack
+
+custom:
+  webpackIncludeModules:
+    packagePath: './package.json'
+
 # You can pin your service to only deploy with a specific Serverless version
 # Check out our docs for more details
 # frameworkVersion: "=X.X.X"
@@ -60,6 +68,12 @@ functions:
     events:
       - http:
           path: /
+          method: get
+  test:
+    handler: handler.test
+    events:
+      - http:
+          path: /test
           method: get
 
 #    The following are a few example events you can configure
